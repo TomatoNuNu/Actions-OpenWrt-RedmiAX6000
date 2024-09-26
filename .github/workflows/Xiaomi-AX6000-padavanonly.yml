@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############手动修改##############
-name: Xiaomi-AX6000-padavanonly
+name: Xiaomi-RedmiAX6000-padavanonly
 
 on:
   repository_dispatch:
@@ -26,6 +26,11 @@ on:
         - mt7986-fw-20230421
         - mt7986-fw-20230808
         - mt7986-fw-20231024
+      GSW:
+        description: 'Use GSW switch driver (non-DSA)'
+        required: true
+        default: true
+        type: boolean
       WO_FW:
         description: 'Choose warp firmware'
         required: true
