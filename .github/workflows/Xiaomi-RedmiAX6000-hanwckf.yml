@@ -49,11 +49,6 @@ on:
         required: true
         default: false
         type: boolean
-      NO_DOCKERMAN:
-        description: 'Not build luci-app-dockerman'
-        required: true
-        default: false
-        type: boolean
       ssh:
         description: 'SSH connection to Actions'
         required: false
