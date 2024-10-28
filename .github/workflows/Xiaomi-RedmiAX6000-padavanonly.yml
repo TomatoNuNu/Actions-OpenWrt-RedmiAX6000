@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############手动修改##############
-name: Xiaomi-RedmiAX6000-padavanonly-23.05-test
+name: Xiaomi-RedmiAX6000-padavanonly-23.05
 
 on:
   repository_dispatch:
@@ -39,18 +39,13 @@ on:
       SW_DRIVER:
         description: 'Choose Switch Driver'
         required: true
-        default: 'GSW'
+        default: 'DSA'
         type: choice
         options:
         - GSW
         - DSA
       APP_MTK:
         description: 'Use luci-app-mtk wifi config'
-        required: true
-        default: false
-        type: boolean
-      NO_DOCKERMAN:
-        description: 'Not build luci-app-dockerman'
         required: true
         default: false
         type: boolean
@@ -189,12 +184,6 @@ jobs:
         sed -i 's/CONFIG_PACKAGE_luci-i18n-mtwifi-cfg-zh-cn=y/CONFIG_PACKAGE_luci-i18n-mtk-zh-cn=y/g' .config
         sed -i 's/CONFIG_PACKAGE_mtwifi-cfg=y/CONFIG_PACKAGE_wifi-profile=y/g' .config
         sed -i 's/CONFIG_PACKAGE_lua-cjson=y/CONFIG_WIFI_NORMAL_SETTING=y/g' .config
-
-    - name: 取消编译dockerman
-      if: github.event.inputs.NO_DOCKERMAN == 'true'
-      run: |
-        cd openwrt
-        sed -i '/CONFIG_PACKAGE_luci-app-dockerman=y/d' .config
 
     - name: SSH链接管理
       uses: P3TERX/ssh2actions@v1.0.0
