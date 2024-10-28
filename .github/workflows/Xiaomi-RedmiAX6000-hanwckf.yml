@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############手动修改##############
-name: Xiaomi-AX6000-hanwckf-new
+name: Xiaomi-RedmiAX6000-hanwckf
 
 on:
   repository_dispatch:
@@ -174,7 +174,7 @@ jobs:
       run: |
         cd openwrt
         if [ ${{ github.event.inputs.SW_DRIVER }} == 'DSA' ]; then
-                cp $GITHUB_WORKSPACE/JDCloud-AX6000-Baili-hanwckf/mt7986a-dsa-jdcloud-re-cp-03.dts target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-jdcloud-re-cp-03.dts
+                cp $GITHUB_WORKSPACE/JDCloud-AX6000-Baili/mt7986a-dsa-jdcloud-re-cp-03.dts target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-jdcloud-re-cp-03.dts
                 sed -i '/jdcloud,re-cp-03)/ {n; /eth0/ {s/eth0/lan1 lan2 lan3 lan4/; n; /ucidef_add_switch/ d}}' target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
                 echo "Use Switch Driver: DSA"
         else
@@ -189,12 +189,6 @@ jobs:
         sed -i 's/CONFIG_PACKAGE_luci-i18n-mtwifi-cfg-zh-cn=y/CONFIG_PACKAGE_luci-i18n-mtk-zh-cn=y/g' .config
         sed -i 's/CONFIG_PACKAGE_mtwifi-cfg=y/CONFIG_PACKAGE_wifi-profile=y/g' .config
         sed -i 's/CONFIG_PACKAGE_lua-cjson=y/CONFIG_WIFI_NORMAL_SETTING=y/g' .config
-
-    - name: 取消编译dockerman
-      if: github.event.inputs.NO_DOCKERMAN == 'true'
-      run: |
-        cd openwrt
-        sed -i '/CONFIG_PACKAGE_luci-app-dockerman=y/d' .config
 
     - name: SSH链接管理
       uses: P3TERX/ssh2actions@v1.0.0
