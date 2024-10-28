@@ -69,7 +69,7 @@ env:
   FEEDS_CONF: JDCloud-AX6000-Baili-hanwckf/feeds.conf.default
   CONFIG_FILE: JDCloud-AX6000-Baili-hanwckf/.mtwifi-cfg.config
   DIY_P1_SH: JDCloud-AX6000-Baili-hanwckf/diy-part1.sh
-  DIY_P2_SH: JDCloud-AX6000-Baili-hanwckf/diy-part2.sh
+  DIY_P2_SH: JDCloud-AX6000-Baili-hanwckf/diy-part2-new.sh
   SSH_ACTIONS: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
